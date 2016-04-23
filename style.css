@@ -1,3 +1,7 @@
+*{
+	margin:0;
+	padding:0;
+}
 nav{
 	background:#000;
 	text-align:center;
@@ -13,15 +17,25 @@ nav{
 .nav-menu li{
 	display:inline-block;
 	position:relative;	
-	border-right:2px solid red;
+	border-left:1px solid #111010;
+	border-right:2px solid #ccc6c6;
+}
+.nav-menu li:last-child{
+	border-right:0;
 }
 .nav-menu  li a{
 	display:inline-block;
 	padding:10px;
-	background:#fff;
-	color: red;
+	color: #fff;
+	text-transform:uppercase;
+	font-weight:bold;
 	text-decoration:none;
 	font-size:16px;
+	-webkit-transition: all .25s ease;
+       -moz-transition: all .25s ease;
+        -ms-transition: all .25s ease;
+         -o-transition: all .25s ease;
+            transition: all .25s ease;
 }
 .nav-menu  li a:hover{
 	background:red;
@@ -31,22 +45,31 @@ nav{
 /*Drop down*/
 .nav-menu li > ul
 {
-	display:none;
+	opacity:0;
+	visibility:hidden;
 	position:absolute;
 	top:100%;
 	left:0;
 	background:#000;
 	padding:0;
+	height:0px;
 	text-align:left;
+	transform: translateZ(0);
+      transform: translateY(10%);
+      transition: all 0.5s ease 0s, visibility 0s linear 0.5s; /* the last value is the transition-delay for visibility */
 }
 
 .nav-menu  li:hover > ul{
-	display:block;
+	visibility:visible;
+	opacity:1;
+	height:auto;
+	transform: translateX(0%);
+      transition-delay: 0s; /* this removes the transition delay so the menu will be visible while the other styles transition */
 }
 
 .nav-menu ul li
 {
-	width:150px
+	width:220px
 }
 .nav-menu ul a
 {
@@ -65,3 +88,25 @@ nav{
 	top:0;
 	left:100%;
 }
+.nav-menu li > ul li{
+	border-right:0;
+	border-left:0;
+	border-bottom:1px solid #fff;
+}
+
+
+.slicknav_menu {
+	display:none;
+}
+
+@media screen and (max-width: 40em) {
+	/* #menu is the original menu */
+	.nav-menu {
+		display:none;
+	}
+	
+	.slicknav_menu {
+		display:block;
+	}
+}
+
